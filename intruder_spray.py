@@ -65,8 +65,8 @@ post请求密码喷洒： python3 intruder_spray.py -d http://xxx.com/ -c spray 
     semaphore = threading.BoundedSemaphore(args.thread)
     # 加载用户名和密码字典
     hanzi_name_dict = open('./top500_name_dict.txt', 'r').readlines()
-    pinyin_name_dict = open('./top500_name_pinyin_dict.txt', 'r').readlines()
-    weak_password_dict = open('./全国弱口令TOP1000.txt', 'r').readlines()
+    pinyin_name_dict = open('./chinese-name-top500-pinyin.txt', 'r').readlines()
+    weak_password_dict = open('./weakpwdtop1000.txt', 'r').readlines()
     if args.change == 'burst':
         if args.username == None:
             parse.print_help()
